@@ -1,23 +1,28 @@
-import mysql.connector
-from sqlalchemy import create_engine
+import sys
+class Game:
+    def __init__(self):
+        self.game_dict = {}
+        file = open('dummy/gList.txt', 'r')
+        content = file.read()
+        file.close()
+        while True:
+            try:
+                gamesNum,GNint = map(str, sys.stdin.readline().split(':'))
+                print(gamesNum,"      ",GNint)
+                GNint = int(GNint)
+                self.game_dict[gamesNum] = GNint
+                print(self.game_dict)
+            except:
+                break
+'''
+        gamesNum, GNint = map(str, sys.stdin.readline().split(':'))
+        GNint = int(GNint)
+        self.game_dict[gamesNum] = GNint
+        for i in range(GNint):
+            print(i)
+            game,number=map(int, sys.stdin.readline().split())
+            self.game_dict[game]=number
+            print(self.game_dict)
+'''
 
-# MySQL Connector 설치 확인
-try:
-    conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="yourpassword"
-    )
-    print("✅ mysql-connector-python 설치 확인 완료!")
-    conn.close()
-except Exception as e:
-    print("❌ mysql-connector-python 설치 오류:", e)
-
-# SQLAlchemy 설치 확인
-try:
-    engine = create_engine("mysql+mysqlconnector://root:yourpassword@localhost/test_db")
-    conn = engine.connect()
-    print("✅ SQLAlchemy 설치 확인 완료!")
-    conn.close()
-except Exception as e:
-    print("❌ SQLAlchemy 설치 오류:", e)
+G=Game()
